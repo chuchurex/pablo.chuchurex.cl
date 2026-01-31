@@ -8,6 +8,7 @@ import { urlFor } from '@/sanity/lib/image'
 import {
   ARTICLE_BY_SLUG_QUERY,
   ALL_ARTICLE_SLUGS_QUERY,
+  SITE_SETTINGS_QUERY,
 } from '@/sanity/lib/queries'
 import { portableTextComponents } from '@/components/portable-text/PortableTextComponents'
 import { formatDate } from '@/lib/utils'
@@ -58,7 +59,10 @@ export async function generateMetadata({
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params
-  const article = await sanityFetch<any>(ARTICLE_BY_SLUG_QUERY, { slug })
+  const [article, settings] = await Promise.all([
+    sanityFetch<any>(ARTICLE_BY_SLUG_QUERY, { slug }),
+    sanityFetch<any>(SITE_SETTINGS_QUERY),
+  ])
 
   if (!article) {
     notFound()
@@ -66,6 +70,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const categorySlug = article.category?.slug ?? 'sin-categoria'
   const parentSlug = article.category?.parent?.slug
+  const scheduleUrl = settings?.scheduleUrl
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
@@ -270,6 +275,26 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           Volver a {article.category?.name || 'Puentes'}
         </Link>
       </div>
+
+      {/* CTA */}
+      {scheduleUrl && (
+        <div className="mt-12 rounded-lg border border-border bg-accent-light/30 p-6 sm:p-8 text-center">
+          <p className="text-lg font-semibold text-foreground">
+            ¿Este tema te resonó?
+          </p>
+          <p className="mt-2 text-sm text-muted">
+            Conversalo con Pablo en una consulta médica con enfoque antroposófico.
+          </p>
+          <a
+            href={scheduleUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity"
+          >
+            Agendar hora
+          </a>
+        </div>
+      )}
     </article>
   )
 }

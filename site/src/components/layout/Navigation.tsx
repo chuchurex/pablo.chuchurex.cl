@@ -16,6 +16,7 @@ interface NavigationProps {
   onLinkClick?: () => void
   className?: string
   variant?: 'desktop' | 'mobile'
+  scheduleUrl?: string
 }
 
 export const navLinks = [
@@ -29,6 +30,7 @@ export default function Navigation({
   onLinkClick,
   className = '',
   variant = 'desktop',
+  scheduleUrl,
 }: NavigationProps) {
   if (variant === 'mobile') {
     return (
@@ -72,6 +74,21 @@ export default function Navigation({
               </Link>
             </li>
           ))}
+
+          {/* CTA */}
+          {scheduleUrl && (
+            <li className="mt-4 px-4">
+              <a
+                href={scheduleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onLinkClick}
+                className="block w-full rounded-lg bg-accent px-4 py-3 text-center text-base font-medium text-white hover:opacity-90 transition-opacity"
+              >
+                Agendar hora
+              </a>
+            </li>
+          )}
         </ul>
       </nav>
     )

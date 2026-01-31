@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/live'
-import { CATEGORIES_QUERY } from '@/sanity/lib/queries'
+import { CATEGORIES_QUERY, SITE_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import HeaderClient from './HeaderClient'
 import type { Category } from './Navigation'
 
@@ -21,9 +21,13 @@ interface SanityCategory {
 
 export default async function Header() {
   let categories: Category[] = []
+  let scheduleUrl: string | undefined
 
   try {
-    const data = await sanityFetch<SanityCategory[]>(CATEGORIES_QUERY)
+    const [data, settings] = await Promise.all([
+      sanityFetch<SanityCategory[]>(CATEGORIES_QUERY),
+      sanityFetch<any>(SITE_SETTINGS_QUERY),
+    ])
     categories = (data ?? []).map(({ _id, name, slug, subcategories }) => ({
       _id,
       name,
@@ -34,6 +38,7 @@ export default async function Header() {
         slug: sub.slug,
       })),
     }))
+    scheduleUrl = settings?.scheduleUrl
   } catch {
     // Fail gracefully - header works without categories
   }
@@ -54,7 +59,7 @@ export default async function Header() {
           </Link>
 
           {/* Client-side nav (desktop dropdown + mobile menu) */}
-          <HeaderClient categories={categories} />
+          <HeaderClient categories={categories} scheduleUrl={scheduleUrl} />
         </div>
       </header>
     </>

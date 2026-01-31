@@ -6,9 +6,10 @@ import Navigation, { navLinks, type Category } from './Navigation'
 
 interface HeaderClientProps {
   categories: Category[]
+  scheduleUrl?: string
 }
 
-export default function HeaderClient({ categories }: HeaderClientProps) {
+export default function HeaderClient({ categories, scheduleUrl }: HeaderClientProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLLIElement>(null)
@@ -121,6 +122,20 @@ export default function HeaderClient({ categories }: HeaderClientProps) {
               </Link>
             </li>
           ))}
+
+          {/* CTA */}
+          {scheduleUrl && (
+            <li>
+              <a
+                href={scheduleUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:opacity-90 transition-opacity"
+              >
+                Agendar hora
+              </a>
+            </li>
+          )}
         </ul>
       </nav>
 
@@ -170,6 +185,7 @@ export default function HeaderClient({ categories }: HeaderClientProps) {
             categories={categories}
             onLinkClick={closeMobile}
             variant="mobile"
+            scheduleUrl={scheduleUrl}
           />
         </div>
       </div>
