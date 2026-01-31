@@ -14,6 +14,8 @@ export default async function HomePage() {
     sanityFetch<any[]>(LATEST_ARTICLES_QUERY, { limit: 6 }),
   ])
 
+  const scheduleUrl = settings?.scheduleUrl
+
   // Pick the first article that has a populated bridge to feature
   const featuredBridge = articles?.find(
     (a: any) =>
@@ -25,33 +27,32 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-white">
         <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:py-32 text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          <p className="text-sm font-medium uppercase tracking-widest text-accent">
+            Médico antroposófico
+          </p>
+          <h1 className="mt-3 text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Pablo Moche
           </h1>
-          <p className="mt-3 text-lg font-medium text-accent sm:text-xl">
-            {settings?.tagline || 'Articulos con Sentido'}
-          </p>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-            {settings?.heroSubtitle ||
-              'Un puente entre la Antroposofia y el mundo moderno. Articulos que conectan la sabiduria espiritual con la ciencia y la vida cotidiana de hoy.'}
+            Consultas médicas con un enfoque que integra la visión espiritual de Rudolf Steiner con la ciencia moderna. Presencial y online.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/puentes"
-              className="rounded-lg bg-accent px-5 py-2.5 text-sm font-medium text-white hover:opacity-90 transition-opacity"
-            >
-              Explorar articulos
-            </Link>
-            {settings?.scheduleUrl && (
+            {scheduleUrl && (
               <a
-                href={settings.scheduleUrl}
+                href={scheduleUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-lg border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:border-accent hover:text-accent transition-colors"
+                className="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity"
               >
                 Agendar hora
               </a>
             )}
+            <Link
+              href="/puentes"
+              className="rounded-lg border border-border px-6 py-3 text-sm font-medium text-foreground hover:border-accent hover:text-accent transition-colors"
+            >
+              Explorar artículos
+            </Link>
           </div>
         </div>
       </section>
@@ -61,11 +62,11 @@ export default async function HomePage() {
         <section className="border-t border-border bg-background">
           <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
             <h2 className="text-center text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Que es un puente
+              ¿Qué es un puente?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-base leading-relaxed text-muted">
-              Cada articulo en este sitio tiende un puente: lo que Steiner
-              enseno primero, la ciencia llego a reconocer despues.
+              Cada artículo en este sitio tiende un puente: lo que Steiner
+              enseñó primero, la ciencia llegó a reconocer después.
             </p>
 
             <div className="mt-10 rounded-lg border border-border bg-white p-6 sm:p-8">
@@ -78,7 +79,7 @@ export default async function HomePage() {
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <blockquote className="rounded-md border-l-4 border-accent bg-accent-light/20 p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-                    Lo que Steiner enseno
+                    Lo que Steiner enseñó
                   </p>
                   <p className="mt-2 font-serif text-sm italic leading-relaxed text-foreground">
                     {featuredBridge.bridgeContext.anthroposophicInsight}
@@ -86,7 +87,7 @@ export default async function HomePage() {
                 </blockquote>
                 <blockquote className="rounded-md border-l-4 border-foreground/30 bg-background p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-foreground/60">
-                    Lo que la ciencia llego a reconocer
+                    Lo que la ciencia llegó a reconocer
                   </p>
                   <p className="mt-2 font-serif text-sm italic leading-relaxed text-foreground">
                     {featuredBridge.bridgeContext.modernConnection}
@@ -102,6 +103,23 @@ export default async function HomePage() {
                 </Link>
               </div>
             </div>
+
+            {/* CTA post-puente */}
+            {scheduleUrl && (
+              <div className="mt-8 text-center">
+                <p className="text-base text-muted">
+                  ¿Te interesa este enfoque para tu salud?
+                </p>
+                <a
+                  href={scheduleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white hover:opacity-90 transition-opacity"
+                >
+                  Agendar consulta con Pablo
+                </a>
+              </div>
+            )}
           </div>
         </section>
       )}
@@ -111,10 +129,10 @@ export default async function HomePage() {
         <section className="border-t border-border bg-white">
           <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Explora por tema
+              Explorá por tema
             </h2>
             <p className="mt-2 text-muted">
-              Salud, educacion, cosmos, espiritualidad — cada categoria es un territorio donde los dos mundos se encuentran.
+              Salud, educación, cosmos, espiritualidad — cada categoría es un territorio donde los dos mundos se encuentran.
             </p>
 
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -140,7 +158,7 @@ export default async function HomePage() {
                     )}
                     <p className="mt-2 text-xs text-muted">
                       {cat.articleCount ?? 0}{' '}
-                      {cat.articleCount === 1 ? 'articulo' : 'articulos'}
+                      {cat.articleCount === 1 ? 'artículo' : 'artículos'}
                     </p>
                   </div>
                 </Link>
@@ -157,10 +175,10 @@ export default async function HomePage() {
             <div className="flex items-end justify-between">
               <div>
                 <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                  Ultimos puentes
+                  Últimos puentes
                 </h2>
                 <p className="mt-2 text-muted">
-                  Las publicaciones mas recientes donde lo que Steiner enseno y lo que la ciencia descubrio se encuentran.
+                  Las publicaciones más recientes donde lo que Steiner enseñó y lo que la ciencia descubrió se encuentran.
                 </p>
               </div>
               <Link
@@ -205,6 +223,28 @@ export default async function HomePage() {
                 </svg>
               </Link>
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* Final CTA */}
+      {scheduleUrl && (
+        <section className="border-t border-border bg-accent-light/30">
+          <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-20 text-center">
+            <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              ¿Buscás un médico que integre la ciencia con la visión espiritual?
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">
+              Pablo Moche es médico antroposófico con más de 20 años de experiencia. Consultas presenciales y online.
+            </p>
+            <a
+              href={scheduleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block rounded-lg bg-accent px-8 py-3.5 text-base font-medium text-white hover:opacity-90 transition-opacity"
+            >
+              Agendar hora con Pablo
+            </a>
           </div>
         </section>
       )}

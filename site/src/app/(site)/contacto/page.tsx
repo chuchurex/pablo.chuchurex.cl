@@ -24,11 +24,11 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: 'Contacto',
     description:
-      'Ponte en contacto con Pablo Moche. Consultas sobre seminarios, articulos y colaboraciones.',
+      'Agendá una consulta médica con Pablo Moche, médico antroposófico. Presencial y online.',
     openGraph: {
       title: 'Contacto | Pablo Moche',
       description:
-        'Ponte en contacto con Pablo Moche. Consultas sobre seminarios, articulos y colaboraciones.',
+        'Agendá una consulta médica con Pablo Moche, médico antroposófico. Presencial y online.',
     },
   }
 }
@@ -51,23 +51,26 @@ export default async function ContactoPage() {
         </header>
 
         <div className="space-y-10">
-          {/* Schedule / Agenda link */}
+          {/* Schedule / Booking */}
           {scheduleUrl && (
-            <section aria-labelledby="agenda-heading">
+            <section
+              aria-labelledby="agenda-heading"
+              className="rounded-lg border border-border bg-accent-light/30 p-6 sm:p-8"
+            >
               <h2
                 id="agenda-heading"
-                className="text-xl font-semibold text-foreground"
+                className="text-2xl font-bold text-foreground"
               >
-                Agenda
+                Agendar hora
               </h2>
               <p className="mt-2 text-muted">
-                Consulta la agenda de proximos seminarios, charlas y actividades.
+                Consultas médicas con enfoque antroposófico. Presencial y online.
               </p>
-              <Link
+              <a
                 href={scheduleUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
               >
                 <svg
                   className="h-5 w-5"
@@ -83,8 +86,8 @@ export default async function ContactoPage() {
                     d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
                   />
                 </svg>
-                Ver agenda completa
-              </Link>
+                Agendar consulta
+              </a>
             </section>
           )}
 
