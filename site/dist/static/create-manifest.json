@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "createdAt": "2026-01-31T01:10:27.881Z",
+  "workspaces": [
+    {
+      "name": "pablo-moche",
+      "title": "Pablo Moche",
+      "basePath": "/",
+      "projectId": "5vh3wgvg",
+      "dataset": "production",
+      "icon": null,
+      "mediaLibrary": {
+        "enabled": false
+      },
+      "schema": "b1931d22.create-schema.json",
+      "tools": "d8640c31.create-tools.json"
+    }
+  ],
+  "studioVersion": "4.22.0"
+}

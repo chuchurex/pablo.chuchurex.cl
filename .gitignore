@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+.env*
+.vercel
+PLAN.md
+payload/
+pablo-reborn/
+
+# scraper tools (one-time use, not needed in repo)
+scraper/node_modules/
+scraper/pages/
+scraper/articles/

@@ -1,0 +1,20 @@
+{
+  "name": "pablomoche-scraper",
+  "version": "1.0.0",
+  "description": "Scraper para migrar contenido de pablomoche.cl a Payload CMS",
+  "type": "module",
+  "scripts": {
+    "scrape": "node scrape.js",
+    "test": "node scrape.js --test",
+    "crawl": "node crawl.js"
+  },
+  "dependencies": {
+    "@sanity/client": "^7.14.1",
+    "cheerio": "^1.0.0",
+    "node-fetch": "^3.3.2"
+  },
+  "main": "crawl.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
