@@ -1,0 +1,961 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Titulo"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 300
+              }
+            ],
+            "level": "warning",
+            "message": "Mantenerlo bajo 300 caracteres"
+          }
+        ],
+        "description": "Resumen corto del articulo para cards y SEO",
+        "name": "excerpt",
+        "type": "text",
+        "title": "Extracto"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "warning",
+                "message": "Importante para accesibilidad"
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Texto alternativo"
+          }
+        ],
+        "name": "featuredImage",
+        "type": "image",
+        "title": "Imagen destacada"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "to": [
+          {
+            "type": "category"
+          }
+        ],
+        "name": "category",
+        "type": "reference",
+        "title": "Categoria"
+      },
+      {
+        "description": "Opcional: conecta este articulo con la vision antroposofica",
+        "name": "bridgeContext",
+        "type": "bridgeContext",
+        "title": "El Puente"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": false,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "name": "href",
+                      "type": "url",
+                      "title": "URL"
+                    },
+                    {
+                      "initialValue": true,
+                      "name": "openInNewTab",
+                      "type": "boolean",
+                      "title": "Abrir en nueva pestana"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object",
+                  "title": "Enlace"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Negrita"
+                },
+                {
+                  "value": "em",
+                  "title": "Cursiva"
+                },
+                {
+                  "value": "underline",
+                  "title": "Subrayado"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Texto alternativo"
+              },
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Leyenda"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "content",
+        "type": "array",
+        "title": "Contenido"
+      },
+      {
+        "name": "source",
+        "type": "sourceLink",
+        "title": "Fuente original"
+      },
+      {
+        "options": {
+          "dateFormat": "DD-MM-YYYY"
+        },
+        "name": "publishedDate",
+        "type": "date",
+        "title": "Fecha de publicacion"
+      },
+      {
+        "initialValue": "draft",
+        "options": {
+          "list": [
+            {
+              "title": "Borrador",
+              "value": "draft"
+            },
+            {
+              "title": "Publicado",
+              "value": "published"
+            },
+            {
+              "title": "Archivado",
+              "value": "archived"
+            }
+          ],
+          "layout": "radio"
+        },
+        "name": "status",
+        "type": "string",
+        "title": "Estado"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO"
+      },
+      {
+        "hidden": true,
+        "name": "legacyId",
+        "type": "string",
+        "title": "ID Legacy"
+      }
+    ],
+    "name": "article",
+    "type": "document",
+    "title": "Articulo"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Nombre"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text",
+        "title": "Descripcion"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 4
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Un emoji que represente esta categoria (ej: 🏥 para Salud)",
+        "name": "icon",
+        "type": "string",
+        "title": "Emoji/Icono"
+      },
+      {
+        "description": "Para subcategorias",
+        "to": [
+          {
+            "type": "category"
+          }
+        ],
+        "name": "parent",
+        "type": "reference",
+        "title": "Categoria padre"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Texto alternativo"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Imagen de la categoria"
+      },
+      {
+        "initialValue": 0,
+        "name": "order",
+        "type": "number",
+        "title": "Orden en menu"
+      }
+    ],
+    "name": "category",
+    "type": "document",
+    "title": "Categoria"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Titulo"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/"
+                                  ],
+                                  "allowRelative": false,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "name": "href",
+                      "type": "url",
+                      "title": "URL"
+                    },
+                    {
+                      "initialValue": true,
+                      "name": "openInNewTab",
+                      "type": "boolean",
+                      "title": "Abrir en nueva pestana"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object",
+                  "title": "Enlace"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Negrita"
+                },
+                {
+                  "value": "em",
+                  "title": "Cursiva"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Texto alternativo"
+              },
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Leyenda"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "content",
+        "type": "array",
+        "title": "Contenido"
+      },
+      {
+        "initialValue": "default",
+        "options": {
+          "list": [
+            {
+              "title": "Predeterminado",
+              "value": "default"
+            },
+            {
+              "title": "Biografia",
+              "value": "biography"
+            },
+            {
+              "title": "Contacto",
+              "value": "contact"
+            }
+          ],
+          "layout": "radio"
+        },
+        "name": "template",
+        "type": "string"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO"
+      }
+    ],
+    "name": "page",
+    "type": "document",
+    "title": "Pagina"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Titulo"
+      },
+      {
+        "rows": 4,
+        "name": "description",
+        "type": "text",
+        "title": "Descripcion"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Online",
+              "value": "online"
+            },
+            {
+              "title": "Presencial",
+              "value": "presencial"
+            }
+          ],
+          "layout": "radio"
+        },
+        "name": "type",
+        "type": "string",
+        "title": "Modalidad"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "scheduleUrl",
+        "type": "url",
+        "title": "Link para agendar"
+      },
+      {
+        "initialValue": true,
+        "name": "isActive",
+        "type": "boolean",
+        "title": "Activo"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Texto alternativo"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Imagen"
+      }
+    ],
+    "name": "seminar",
+    "type": "document",
+    "title": "Seminario"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Pablo Moche",
+        "name": "siteName",
+        "type": "string",
+        "title": "Nombre del sitio"
+      },
+      {
+        "initialValue": "Articulos con Sentido",
+        "name": "tagline",
+        "type": "string",
+        "title": "Subtitulo"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Texto alternativo"
+          }
+        ],
+        "name": "heroImage",
+        "type": "image",
+        "title": "Imagen del hero (El Puente)"
+      },
+      {
+        "rows": 3,
+        "description": "Texto que aparece en el hero de la pagina principal",
+        "name": "heroSubtitle",
+        "type": "text",
+        "title": "Texto del hero"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "URL de la agenda de Pablo",
+        "name": "scheduleUrl",
+        "type": "url",
+        "title": "Link para agendar hora"
+      },
+      {
+        "name": "contactEmail",
+        "type": "string",
+        "title": "Email de contacto"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Instagram",
+                      "value": "instagram"
+                    },
+                    {
+                      "title": "Facebook",
+                      "value": "facebook"
+                    },
+                    {
+                      "title": "YouTube",
+                      "value": "youtube"
+                    },
+                    {
+                      "title": "LinkedIn",
+                      "value": "linkedin"
+                    },
+                    {
+                      "title": "WhatsApp",
+                      "value": "whatsapp"
+                    }
+                  ]
+                },
+                "name": "platform",
+                "type": "string",
+                "title": "Red social"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "url",
+                "type": "url",
+                "title": "URL"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "socialLinks",
+        "type": "array",
+        "title": "Redes sociales"
+      },
+      {
+        "rows": 2,
+        "name": "footerText",
+        "type": "text",
+        "title": "Texto del footer"
+      }
+    ],
+    "name": "siteSettings",
+    "type": "document",
+    "title": "Configuracion del Sitio"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 70
+              }
+            ],
+            "level": "warning",
+            "message": "Mantenerlo bajo 70 caracteres para mejor SEO"
+          }
+        ],
+        "description": "Sobreescribe el titulo de la pagina si se proporciona",
+        "name": "title",
+        "type": "string",
+        "title": "Titulo SEO"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ],
+            "level": "warning",
+            "message": "Mantenerlo bajo 160 caracteres para mejor SEO"
+          }
+        ],
+        "name": "description",
+        "type": "text",
+        "title": "Descripcion SEO"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Recomendado: 1200x630px",
+        "name": "image",
+        "type": "image",
+        "title": "Imagen para redes sociales"
+      },
+      {
+        "initialValue": false,
+        "description": "Ocultar esta pagina de Google y otros buscadores",
+        "name": "noIndex",
+        "type": "boolean",
+        "title": "Ocultar de buscadores"
+      }
+    ],
+    "name": "seo",
+    "type": "object",
+    "title": "SEO"
+  },
+  {
+    "description": "Conecta la vision antroposofica con la ciencia moderna",
+    "fields": [
+      {
+        "rows": 4,
+        "description": "Lo que dijo Steiner o la Antroposofia sobre este tema",
+        "name": "anthroposophicInsight",
+        "type": "text",
+        "title": "Vision Antroposofica"
+      },
+      {
+        "rows": 4,
+        "description": "Por que este articulo importa hoy — como la ciencia moderna lo valida",
+        "name": "modernConnection",
+        "type": "text",
+        "title": "Conexion Moderna"
+      }
+    ],
+    "name": "bridgeContext",
+    "type": "object",
+    "title": "El Puente"
+  },
+  {
+    "fields": [
+      {
+        "name": "author",
+        "type": "string",
+        "title": "Autor original"
+      },
+      {
+        "description": "Ej: Infobae, Clarin, Emol",
+        "name": "publication",
+        "type": "string",
+        "title": "Medio/Publicacion"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "url",
+        "type": "url",
+        "title": "URL de la fuente"
+      }
+    ],
+    "name": "sourceLink",
+    "type": "object",
+    "title": "Fuente Original"
+  }
+]
