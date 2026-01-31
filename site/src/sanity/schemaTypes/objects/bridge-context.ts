@@ -10,15 +10,15 @@ export const bridgeContextType = defineType({
   fields: [
     defineField({
       name: 'anthroposophicInsight',
-      title: 'Vision Antroposofica',
-      description: 'Lo que dijo Steiner o la Antroposofia sobre este tema',
+      title: 'Lo que Steiner enseno',
+      description: 'El conocimiento que Rudolf Steiner entrego sobre este tema',
       type: 'text',
       rows: 4,
     }),
     defineField({
       name: 'modernConnection',
-      title: 'Conexion Moderna',
-      description: 'Por que este articulo importa hoy — como la ciencia moderna lo valida',
+      title: 'Lo que la ciencia llego a reconocer',
+      description: 'Como la ciencia moderna llego a reconocer lo que Steiner ya habia ensenado',
       type: 'text',
       rows: 4,
     }),

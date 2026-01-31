@@ -170,14 +170,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               El puente
             </p>
             <p className="mt-1 text-sm text-muted">
-              Lo que la antroposofia intuyo y la ciencia confirma
+              Lo que Steiner enseno y la ciencia llego a reconocer
             </p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {article.bridgeContext.anthroposophicInsight && (
                 <div className="rounded-md border-l-4 border-accent bg-white p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-                    La intuicion
+                    Lo que Steiner enseno
                   </p>
                   <p className="mt-2 font-serif text-sm leading-relaxed text-foreground">
                     {article.bridgeContext.anthroposophicInsight}
@@ -188,7 +188,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               {article.bridgeContext.modernConnection && (
                 <div className="rounded-md border-l-4 border-foreground/30 bg-white p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-foreground/60">
-                    La confirmacion
+                    Lo que la ciencia llego a reconocer
                   </p>
                   <p className="mt-2 font-serif text-sm leading-relaxed text-foreground">
                     {article.bridgeContext.modernConnection}

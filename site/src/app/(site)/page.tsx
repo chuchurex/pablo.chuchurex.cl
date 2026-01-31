@@ -64,8 +64,8 @@ export default async function HomePage() {
               Que es un puente
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-base leading-relaxed text-muted">
-              Cada articulo en este sitio tiende un puente: lo que la
-              antroposofia intuyo, la ciencia hoy lo confirma.
+              Cada articulo en este sitio tiende un puente: lo que Steiner
+              enseno primero, la ciencia llego a reconocer despues.
             </p>
 
             <div className="mt-10 rounded-lg border border-border bg-white p-6 sm:p-8">
@@ -78,7 +78,7 @@ export default async function HomePage() {
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <blockquote className="rounded-md border-l-4 border-accent bg-accent-light/20 p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-accent">
-                    La intuicion
+                    Lo que Steiner enseno
                   </p>
                   <p className="mt-2 font-serif text-sm italic leading-relaxed text-foreground">
                     {featuredBridge.bridgeContext.anthroposophicInsight}
@@ -86,7 +86,7 @@ export default async function HomePage() {
                 </blockquote>
                 <blockquote className="rounded-md border-l-4 border-foreground/30 bg-background p-4">
                   <p className="text-xs font-semibold uppercase tracking-wider text-foreground/60">
-                    La confirmacion
+                    Lo que la ciencia llego a reconocer
                   </p>
                   <p className="mt-2 font-serif text-sm italic leading-relaxed text-foreground">
                     {featuredBridge.bridgeContext.modernConnection}
@@ -160,7 +160,7 @@ export default async function HomePage() {
                   Ultimos puentes
                 </h2>
                 <p className="mt-2 text-muted">
-                  Las publicaciones mas recientes donde la intuicion y la ciencia se encuentran.
+                  Las publicaciones mas recientes donde lo que Steiner enseno y lo que la ciencia descubrio se encuentran.
                 </p>
               </div>
               <Link
