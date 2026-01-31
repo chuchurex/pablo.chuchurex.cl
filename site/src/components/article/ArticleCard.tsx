@@ -75,13 +75,13 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           <div className="mt-3 flex-1 space-y-2">
             {article.bridgeContext!.anthroposophicInsight && (
               <p className="text-sm leading-relaxed text-muted line-clamp-2">
-                <span className="font-semibold text-accent">La intuicion: </span>
+                <span className="font-semibold text-accent">Steiner enseno: </span>
                 {article.bridgeContext!.anthroposophicInsight}
               </p>
             )}
             {article.bridgeContext!.modernConnection && (
               <p className="text-sm leading-relaxed text-muted line-clamp-2">
-                <span className="font-semibold text-foreground/60">La confirmacion: </span>
+                <span className="font-semibold text-foreground/60">La ciencia llego a: </span>
                 {article.bridgeContext!.modernConnection}
               </p>
             )}
